@@ -21,6 +21,5 @@ COPY . /app
 # 7) (Optional) expose whichever port your app listens on
 EXPOSE 5000
 
-# 8) Final command to run your app; change to app_finetuned.py or 
-#    use gunicorn/uvicorn if you prefer
+# 8) Final command to run your app
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]

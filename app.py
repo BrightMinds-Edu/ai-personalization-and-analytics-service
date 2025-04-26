@@ -7,7 +7,7 @@ from pydantic import BaseModel
 import google.generativeai as genai
 import os
 
-genai.configure(api_key='AIzaSyCDfbC5ZTBfvflRvwi4NmmvPCmsRBfwKaE')
+genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
 model = genai.GenerativeModel(
     model_name="tunedModels/generate-num-7045")
