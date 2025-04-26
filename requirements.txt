@@ -1,4 +1,0 @@
-python=3.11.11
-numpy=1.26.4
-scikit-learn=1.6.1
-gradio=5.25.2
