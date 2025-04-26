@@ -1,4 +1,3 @@
-# api.py
 from typing import List
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -6,6 +5,7 @@ import joblib
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import google.generativeai as genai
+import os
 
 genai.configure(api_key='AIzaSyCDfbC5ZTBfvflRvwi4NmmvPCmsRBfwKaE')
 
@@ -61,9 +61,9 @@ async def generate_text(req: GenerationRequest):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
-        "app:app",      # module:variable
-        host="0.0.0.0", # accept external connections
-        port=5000,      # match the EXPOSE below
-        reload=True     # remove in production
+        "api:app",
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),  # important
+        reload=True
     )
 
