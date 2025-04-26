@@ -18,7 +18,7 @@ model = genai.GenerativeModel(
 class GenerationRequest(BaseModel):
     prompt: str
 
-pipeline_cat_cla = joblib.load('cat_classifier_1.pkl.pkl')
+pipeline_cat_cla = joblib.load('cat_classifier_1.pkl')
 pipeline_cat_math_cla = joblib.load('math_classifier_1.pkl')
 
 class TextIn(BaseModel):

@@ -1,8 +1,14 @@
 # Environments
 .env
-.venv
+.venv/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Jupyter notebooks
+*.ipynb
+
+# Ignore CSV files folder
+/csv_files/
