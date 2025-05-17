@@ -9,10 +9,10 @@ import os
 
 genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
-model = genai.GenerativeModel(
+model_maths = genai.GenerativeModel(
     model_name="tunedModels/generate-num-7045")
 
-model = genai.GenerativeModel(
+model_sinhala = genai.GenerativeModel(
     model_name="tunedModels/generate-num-8211")
 
 class GenerationRequest(BaseModel):
@@ -49,10 +49,18 @@ def predict_batch_math_cla(batch: BatchIn):
     labels = pipeline_cat_math_cla.predict(batch.texts)
     return {"predictions": labels.tolist() if hasattr(labels, "tolist") else list(labels)}
 
-@app.post("/generate/")
+@app.post("/MathExplanation/")
 async def generate_text(req: GenerationRequest):
     try:
-        resp = model.generate_content(req.prompt)
+        resp = model_maths.generate_content(req.prompt)
+        return {"generated_text": resp.text}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/SinExplanation/")
+async def generate_text(req: GenerationRequest):
+    try:
+        resp = model_sinhala.generate_content(req.prompt)
         return {"generated_text": resp.text}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
