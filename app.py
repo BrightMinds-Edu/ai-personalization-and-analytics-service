@@ -182,6 +182,16 @@ async def fetch_answer(req: GenerationRequest):
 @app.post("/MathAnswer/")
 async def fetch_answer(req: GenerationRequest):
     model = "projects/557553409003/locations/us-central1/endpoints/724847543053189120"
+    from langchain_google_genai import ChatGoogleGenerativeAI
+
+    # llm = ChatGoogleGenerativeAI(
+    #     model="gemini-2.0-flash",
+    #     temperature=0,
+    #     max_tokens=None,
+    #     timeout=None,
+    #     max_retries=2,
+    #     # other params...
+    # )
 
     prompt  = """
 
@@ -212,6 +222,7 @@ async def fetch_answer(req: GenerationRequest):
     try:
         fetch_answer_prompt = prompt.format(Question=req.prompt)
         resp = generate(model, fetch_answer_prompt)
+        # a = llm.invoke(fetch_answer_prompt)
         return {"generated_text": resp}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
